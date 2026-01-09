@@ -1,55 +1,44 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version change: N/A → 1.0.0
+Added sections: All principles and sections based on user requirements
+Removed sections: None (new constitution)
+Templates requiring updates:
+  - .specify/templates/plan-template.md: ✅ updated to reflect new constitution principles
+  - .specify/templates/spec-template.md: ✅ updated to align with specification-first principle
+  - .specify/templates/tasks-template.md: ✅ updated to align with testability principle
+  - .specify/templates/adr-template.md: ✅ updated to align with architectural decision documentation principle
+Follow-up TODOs: None
+-->
+# Spec-Driven Multi-Phase Todo Application (Console → Cloud → AI) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Specification-first development
+No implementation without approved specs. All development must start with a clear, approved specification that defines inputs, outputs, state changes, and failure modes.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Deterministic behavior
+Explicit inputs, outputs, and state transitions. The system must behave predictably with the same inputs producing the same outputs and state changes.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Incremental scalability
+Each phase builds cleanly on the previous one. No phase may introduce implementation shortcuts, and each phase must pass validation before advancing.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Technology-agnostic specs with phase-specific bindings
+Specifications must be readable by both humans and AI coding agents, with clear technology-agnostic requirements that can be bound to specific technologies in each phase.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Testability and verifiability at every phase
+Every phase must have functional requirements, non-functional requirements, explicit constraints, and acceptance criteria. All features must be traceable to a requirement.
 
-### [PRINCIPLE_6_NAME]
+### Clear separation of concerns
+Clear separation of concerns (logic, storage, interface, AI). No hidden state or implicit behavior. Error handling must be explicitly specified.
 
+## Phase Constraints & Scope
+Each phase has specific technology stacks and scope constraints. Phase I uses Python with in-memory storage only. Phase II uses Next.js, FastAPI, SQLModel, Neon DB. Phase III uses OpenAI ChatKit, Agents SDK, Official MCP SDK. Phase IV uses Docker, Minikube, Helm, kubectl-ai, kagent. Phase V uses Kafka, Dapr, DigitalOcean DOKS. Backward compatibility must be preserved across phases unless explicitly broken.
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow and Quality Standards
+Prefer the smallest viable diff; do not refactor unrelated code. Never hardcode secrets or tokens; use .env and docs. Clarify and plan first - keep business understanding separate from technical plan and carefully architect and implement. Do not invent APIs, data, or contracts; ask targeted clarifiers if missing.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution supersedes all other practices. Amendments require documentation, approval, and migration plan if needed. All implementation work must verify compliance with these principles. Specifications must define inputs, outputs, state changes, and failure modes. Success is measured by deterministic behavior in Phase I, with each subsequent phase passing all prior acceptance criteria.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-02 | **Last Amended**: 2026-01-02

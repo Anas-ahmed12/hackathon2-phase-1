@@ -1,0 +1,14 @@
+[project]
+name = "console-todo-app"
+version = "0.1.0"
+description = "In-Memory Console Todo Application"
+authors = ["Developer <developer@example.com>"]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
